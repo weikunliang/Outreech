@@ -26,7 +26,7 @@
     <ion-pane>
       <ion-header-bar class="bar-stable">
 
-        <button class="button button-icon" ng-click="newTask()">
+        <button class="button button-icon" ng-click="newFollow()">
           <i class="icon ion-gear-a"></i>
         </button>
         <h1 class="title">OUTREECH</h1>
@@ -37,8 +37,30 @@
      
       </ion-header-bar>
       <ion-content>
+
+      <div class="list card">
+        <ion-item ng-repeat="card in cards">
+          <div class="item">
+            <h2>{{card.at}}</h2>
+            <h2>{{card.hashtag}}</h2>
+          </div>
+
+          <div class="item item-image">
+            <img src={{card.img}}>
+          </div>
+        </ion-item>
+      </div>
         
       </ion-content>
+
+      <div class="bar bar-footer">
+        <div class="item range">
+          <i class="icon ion-waterdrop"></i>
+          <input type="range" name="like">
+          <i class="icon ion-fireball"></i>
+        </div>
+
+      </div>
     </ion-pane>
   </body>
 
@@ -48,7 +70,7 @@
 
     <!-- Modal header bar -->
     <ion-header-bar class="bar-secondary">
-      <button class="button button-clear button-positive" ng-click="closeNewTask()">
+      <button class="button button-clear button-positive" ng-click="closeFollow()">
         <i class="ion-ios-arrow-back"></i>
       </button>
       <h1 class="title">SETTINGS</h1>
@@ -57,10 +79,10 @@
     <!-- Modal content area -->
     <ion-content>
 
-      <form ng-submit="createTask(task)">
+      <form ng-submit="createFollow(follow)">
         <div class="list">
           <label class="item item-input">
-            <input type="text" placeholder="Enter here..." ng-model="task.title">
+            <input type="text" placeholder="Enter here..." ng-model="follow.title">
           </label>
         </div>
         <div class="padding">
@@ -68,11 +90,24 @@
         </div>
       </form>
 
-      <ion-list>
-          <ion-item ng-repeat="task in tasks">
-            {{task.title}}
+      <div class="item item-divider">
+        Follow
+      </div>
+
+      <div class="list">
+        
+          <ion-item ng-repeat="follow in follows">
+            <div class="item item-button-right">
+              {{follow.title}}
+              <button class="button button-clear button-positive" ng-click="deleteFollow(follow)">
+                <i class="ion-close-round"></i>
+              </button>
+            </div>
           </ion-item>
-        </ion-list>
+        
+      </div>
+
+
 
     </ion-content>
 

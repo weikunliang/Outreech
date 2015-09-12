@@ -20,44 +20,46 @@ angular.module('home', ['ionic'])
 
 angular.module('home', ['ionic'])
 
-.controller('FeedCtrl', function($scope) {
-  $scope.tasks = [
-    { title: 'Collect coins' },
-    { title: 'Eat mushrooms' },
-    { title: 'Get high enough to grab the flag' },
-    { title: 'Find the Princess' }
-  ];
-});
-
-angular.module('home', ['ionic'])
-
 .controller('FeedCtrl', function($scope, $ionicModal) {
   // No need for testing data anymore
-  $scope.tasks = [];
+  $scope.follows = [];
+  $scope.cards = [
+    { hashtag: '#CONCERT' , at: '@CMU', img: 'img/card.png'},
+    { hashtag: '#CONCERT' , at: '@CMU', img: 'img/card.png'}
+  ];
+
+
 
   // Create and load the Modal
   $ionicModal.fromTemplateUrl('settings.html', function(modal) {
-    $scope.taskModal = modal;
+    $scope.followModal = modal;
   }, {
     scope: $scope,
     animation: 'slide-in-up'
   });
 
   // Called when the form is submitted
-  $scope.createTask = function(task) {
-    $scope.tasks.push({
-      title: task.title
+  $scope.createFollow = function(follow) {
+    $scope.follows.push({
+      title: follow.title
     });
-    task.title = "";
+    follow.title = "";
+  };
+
+  $scope.deleteFollow = function(follow) {
+    var index = $scope.follows.indexOf(follow);
+    if (index > -1) {
+      $scope.follows.splice(index, 1);
+    }
   };
 
   // Open our new task modal
-  $scope.newTask = function() {
-    $scope.taskModal.show();
+  $scope.newFollow = function() {
+    $scope.followModal.show();
   };
 
   // Close the new task modal
-  $scope.closeNewTask = function() {
-    $scope.taskModal.hide();
+  $scope.closeFollow = function() {
+    $scope.followModal.hide();
   };
 });
