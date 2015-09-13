@@ -29,13 +29,14 @@ angular.module('home', ['ionic'])
   ];
 
   $scope.postsOther = [
-    { img: 'img/card.png', hashtag: '#CONCERT' , at: '@CMU', score: '98', filter: 'all'},
-    { img: 'img/card.png', hashtag: '#CONCERT' , at: '@CMU', score: '97', filter: 'all'}
+    { img: 'img/card.png', hashtag: '#CONCERT' , at: '@CMU', score: '98'},
+    { img: 'img/card.png', hashtag: '#CONCERT' , at: '@CMU', score: '97'}
   ];
 
   $scope.postsMe = [
-    { img: 'img/card.png', hashtag: '#CONCERT' , at: '@CMU', score: '100', filter: 'all'},
-    { img: 'img/card.png', hashtag: '#CONCERT' , at: '@CMU', score: '99', filter: 'all'}
+    { img: 'img/card.png', hashtag: '#a' , at: '@CMU', score: '100'},
+    { img: 'img/card.png', hashtag: '#b' , at: '@CMU', score: '99'},
+    { img: 'img/card.png', hashtag: '#c' , at: '@CMU', score: '50'}
   ];
 
 
@@ -55,8 +56,15 @@ angular.module('home', ['ionic'])
     animation: 'slide-in-up'
   });
 
-  $ionicModal.fromTemplateUrl('lists.html', function(modal) {
-    $scope.listModal = modal;
+  $ionicModal.fromTemplateUrl('postAll.html', function(modal) {
+    $scope.postAllModal = modal;
+  }, {
+    scope: $scope,
+    animation: 'slide-in-up'
+  });
+
+  $ionicModal.fromTemplateUrl('postMe.html', function(modal) {
+    $scope.postMeModal = modal;
   }, {
     scope: $scope,
     animation: 'slide-in-up'
@@ -152,9 +160,21 @@ angular.module('home', ['ionic'])
         alert('Example of infowindow with ng-click')
     };
 
-    $scope.openList = function() {
-    $scope.listModal.show();
-  };
+
+    $scope.closeList = function() {
+      $scope.postAllModal.hide();
+      $scope.postMeModal.hide();
+    };
+
+    $scope.filterAll = function() {
+      $scope.postMeModal.hide();
+      $scope.postAllModal.show();
+    };
+
+    $scope.filterMe = function() {
+      $scope.postAllModal.hide();
+      $scope.postMeModal.show();
+    };
 
 });
 

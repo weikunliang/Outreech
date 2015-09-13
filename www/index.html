@@ -129,7 +129,7 @@
         <i class="ion-ios-arrow-back"></i>
       </button>
       <h1 class="title">OUTREECH</h1>
-      <button class="button button-icon" ng-click="openList()">
+      <button class="button button-icon" ng-click="filterAll()">
         <i class="ion-ios-people"></i>
       </button>
     </ion-header-bar>
@@ -147,7 +147,44 @@
 
 </script>
 
-<script id="lists.html" type="text/ng-template">
+<script id="postAll.html" type="text/ng-template">
+
+  <div class="modal">
+    <ion-header-bar class="bar-stable">
+      <button class="button button-icon" ng-click="closeList()">
+        <i class="ion-ios-arrow-back"></i>
+      </button>
+      
+      <button class="button button-icon">
+        <i class="ion-android-globe"></i>
+      </button>
+
+      <button class="button button-icon" ng-click="filterMe()">
+        <i class="ion-person"></i>
+      </button>
+    </ion-header-bar>
+
+    <ion-content>
+      <div class="list card">
+          
+            <ion-item ng-repeat="p1 in postsOther">
+                <div class="item item-avatar">
+                  <img src={{p1.img}}>
+                  <h2>{{p1.at}}</h2>
+                  <h2>{{p1.hashtag}}</h2>
+                  <h2>{{p2.score}}</h2>
+                </div>
+            </ion-item>
+          
+        </div>
+
+    </ion-content>
+
+  </div>
+
+</script>
+
+<script id="postMe.html" type="text/ng-template">
 
   <div class="modal">
     <ion-header-bar class="bar-stable">
@@ -159,7 +196,7 @@
         <i class="ion-android-globe"></i>
       </button>
 
-      <button class="button button-icon" ng-click="filterYou()">
+      <button class="button button-icon">
         <i class="ion-person"></i>
       </button>
     </ion-header-bar>
@@ -167,18 +204,16 @@
     <ion-content>
       <div class="list card">
           
-            <ion-item ng-repeat="post in postsOther">
+            <ion-item ng-repeat="p2 in postsMe">
                 <div class="item item-avatar">
-                  <img src={{post.img}}>
-                  <h2>{{post.at}}</h2>
-                  <h2>{{post.hashtag}}</h2>
-                  <h2>98</h2>
+                  <img src={{p2.img}}>
+                  <h2>{{p2.at}}</h2>
+                  <h2>{{p2.hashtag}}</h2>
+                  <h2>{{p2.score}}</h2>
                 </div>
             </ion-item>
           
         </div>
-
-
 
     </ion-content>
 
