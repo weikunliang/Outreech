@@ -8,9 +8,6 @@
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
-    <link href="//code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet">
-    <script src="//code.ionicframework.com/nightly/js/ionic.bundle.js"></script>
-
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
@@ -30,7 +27,7 @@
   <body ng-app="home" ng-controller="FeedCtrl">
 
     <ion-pane>
-      <ion-header-bar class="bar-stable">
+      <ion-header-bar class="bar bar-balanced">
 
         <button class="button button-icon" ng-click="newFollow()">
           <i class="icon ion-gear-a"></i>
@@ -45,15 +42,16 @@
       <ion-content>
 
       <div class="list card">
-        <ion-item ng-repeat="card in cards">
+        <ion-item ng-repeat="card in cards" class="cardItem">
           <div class="item">
-            <h2>{{card.at}}</h2>
-            <h2>{{card.hashtag}}</h2>
+            <h2 class = "info">{{card.at}}<br>{{card.hashtag}}</h2><br>
+            <h2 class = "score">{{card.score}}</h2>
           </div>
 
           <div class="item item-image">
             <img src={{card.img}} ng-click="openMaps()">
           </div>
+
         </ion-item>
       </div>
         
@@ -75,7 +73,7 @@
   <div class="modal">
 
     <!-- Modal header bar -->
-    <ion-header-bar class="bar-secondary">
+    <ion-header-bar class="bar-secondary bar-balanced">
       <button class="button button-clear button-positive" ng-click="closeFollow()">
         <i class="ion-ios-arrow-back"></i>
       </button>
@@ -124,7 +122,7 @@
 <script id="map.html" type="text/ng-template">
 
   <div class="modal">
-    <ion-header-bar class="bar-stable">
+    <ion-header-bar class="bar bar-balanced">
       <button class="button button-icon" ng-click="closeMaps()">
         <i class="ion-ios-arrow-back"></i>
       </button>
@@ -150,7 +148,7 @@
 <script id="postAll.html" type="text/ng-template">
 
   <div class="modal">
-    <ion-header-bar class="bar-stable">
+    <ion-header-bar class="bar bar-balanced">
       <button class="button button-icon" ng-click="closeList()">
         <i class="ion-ios-arrow-back"></i>
       </button>
@@ -187,7 +185,7 @@
 <script id="postMe.html" type="text/ng-template">
 
   <div class="modal">
-    <ion-header-bar class="bar-stable">
+    <ion-header-bar class="bar bar-balanced">
       <button class="button button-icon" ng-click="closeList()">
         <i class="ion-ios-arrow-back"></i>
       </button>

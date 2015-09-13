@@ -7,3 +7,24 @@
 .scroll {
   height: 100%;
 }
+
+.card .item{
+  background: #ffffba;
+}
+
+.cardItem {
+	margin-bottom: 20px;
+}
+
+h2 {
+	color: #67d3f9;
+	font-weight: bold;
+}
+
+.info {
+	float: left;
+}
+
+.score {
+	float: right;
+}

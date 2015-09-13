@@ -24,8 +24,8 @@ angular.module('home', ['ionic'])
   // No need for testing data anymore
   $scope.follows = [];
   $scope.cards = [
-    { hashtag: '#CONCERT' , at: '@CMU', img: 'img/card.png'},
-    { hashtag: '#CONCERT' , at: '@CMU', img: 'img/card.png'}
+    { hashtag: '#CONCERT' , at: '@CMU', img: 'img/card.png', score: '99'},
+    { hashtag: '#CONCERT' , at: '@CMU', img: 'img/card.png', score: '70'}
   ];
 
   $scope.postsOther = [
