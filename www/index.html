@@ -156,15 +156,29 @@
       </button>
       
       <button class="button button-icon" ng-click="filterAll()">
-        <i class="ion-ios-people"></i>
+        <i class="ion-android-globe"></i>
       </button>
 
       <button class="button button-icon" ng-click="filterYou()">
-        <i class="ion-ios-people"></i>
+        <i class="ion-person"></i>
       </button>
     </ion-header-bar>
 
     <ion-content>
+      <div class="list card">
+          
+            <ion-item ng-repeat="post in postsOther">
+                <div class="item item-avatar">
+                  <img src={{post.img}}>
+                  <h2>{{post.at}}</h2>
+                  <h2>{{post.hashtag}}</h2>
+                  <h2>98</h2>
+                </div>
+            </ion-item>
+          
+        </div>
+
+
 
     </ion-content>
 

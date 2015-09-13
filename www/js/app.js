@@ -28,6 +28,16 @@ angular.module('home', ['ionic'])
     { hashtag: '#CONCERT' , at: '@CMU', img: 'img/card.png'}
   ];
 
+  $scope.postsOther = [
+    { img: 'img/card.png', hashtag: '#CONCERT' , at: '@CMU', score: '98', filter: 'all'},
+    { img: 'img/card.png', hashtag: '#CONCERT' , at: '@CMU', score: '97', filter: 'all'}
+  ];
+
+  $scope.postsMe = [
+    { img: 'img/card.png', hashtag: '#CONCERT' , at: '@CMU', score: '100', filter: 'all'},
+    { img: 'img/card.png', hashtag: '#CONCERT' , at: '@CMU', score: '99', filter: 'all'}
+  ];
+
 
   // Create and load the Modal
   $ionicModal.fromTemplateUrl('settings.html', function(modal) {
