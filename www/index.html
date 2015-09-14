@@ -74,7 +74,7 @@
 
     <!-- Modal header bar -->
     <ion-header-bar class="bar-secondary bar-balanced">
-      <button class="button button-clear button-positive" ng-click="closeFollow()">
+      <button class="button button-icon" ng-click="closeFollow()">
         <i class="ion-ios-arrow-back"></i>
       </button>
       <h1 class="title">SETTINGS</h1>
@@ -90,12 +90,12 @@
           </label>
         </div>
         <div class="padding">
-          <button type="submit" class="button button-block button-positive">Follow</button>
+          <button type="submit" class="button button-block button-positive">FOLLOW</button>
         </div>
       </form>
 
       <div class="item item-divider">
-        Follow
+        MY TAGS
       </div>
 
       <div class="list">
@@ -103,7 +103,7 @@
           <ion-item ng-repeat="follow in follows">
             <div class="item item-button-right">
               {{follow.title}}
-              <button class="button button-clear button-positive" ng-click="deleteFollow(follow)">
+              <button class="button button-icon" ng-click="deleteFollow(follow)">
                 <i class="ion-close-round"></i>
               </button>
             </div>
@@ -170,7 +170,7 @@
                   <img src={{p1.img}}>
                   <h2>{{p1.at}}</h2>
                   <h2>{{p1.hashtag}}</h2>
-                  <h2>{{p2.score}}</h2>
+                  <h2>{{p1.score}}</h2>
                 </div>
             </ion-item>
           

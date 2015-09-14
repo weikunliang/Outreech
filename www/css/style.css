@@ -28,3 +28,7 @@ h2 {
 .score {
 	float: right;
 }
+
+.item-divider {
+	text-align: center;
+}
