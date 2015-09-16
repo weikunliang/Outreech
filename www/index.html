@@ -24,7 +24,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB16sGmIekuGIvYOfNoW9T44377IU2d2Es&sensor=true"></script>
 
   </head>
-  <body ng-app="home" ng-controller="FeedCtrl">
+  <body ng-app="home" ng-controller="FeedCtrl" data-ng-init="buildCards();">
 
     <ion-pane>
       <ion-header-bar class="bar bar-balanced">
@@ -44,12 +44,12 @@
       <div class="list card">
         <ion-item ng-repeat="card in cards" class="cardItem">
           <div class="item">
-            <h2 class = "info">{{card.at}}<br>{{card.hashtag}}</h2><br>
+            <h2 class = "info">{{card.atsymb}}<br>{{card.hashtag}}</h2><br>
             <h2 class = "score">{{card.score}}</h2>
           </div>
 
           <div class="item item-image">
-            <img src={{card.img}} ng-click="openMaps()">
+            <img src={{card.url}} ng-click="openMaps()">
           </div>
 
         </ion-item>
@@ -58,9 +58,9 @@
       </ion-content>
 
       <div class="bar bar-footer">
-        <div class="item range">
+        <div class="item range" id="slideBar">
           <i class="icon ion-waterdrop"></i>
-          <input type="range" name="like">
+          <input type="range" name="like" min="0"  max="1000" value="{{slider.rangeValue}}" ng-model="slider.rangeValue">
           <i class="icon ion-fireball"></i>
         </div>
 

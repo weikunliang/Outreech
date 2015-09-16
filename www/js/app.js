@@ -20,13 +20,36 @@ angular.module('home', ['ionic'])
 
 angular.module('home', ['ionic'])
 
-.controller('FeedCtrl', function($scope, $ionicModal, $ionicLoading, $compile) {
+.controller('FeedCtrl', function($scope, $ionicModal, $ionicLoading, $compile, $http) {
+
+  var ipAddress ="127.0.0.1"
+  // $httpProvider.defaults.useXDomain=true;
+  // delete $httpProvider.defaults.headers.common['X-Requested-With'];
+
   // No need for testing data anymore
   $scope.follows = [];
-  $scope.cards = [
-    { hashtag: '#CONCERT' , at: '@CMU', img: 'img/card.png', score: '99'},
-    { hashtag: '#CONCERT' , at: '@CMU', img: 'img/card.png', score: '70'}
-  ];
+  $scope.buildCards = function(){
+    console.log("Im here");
+    $http.get('http://'+ipAddress+':50000/getReeches/').
+        then(function(response) {
+          $scope.cards = [
+            { hashtag: '#CONCERT' , atsymb: '@CMU', url: 'reechImg/card.png', score: '99'},
+            { hashtag: '#CONCERT' , atsymb: '@CMU', url: 'reechImg/card.png', score: '70'}
+          ]
+          console.log(JSON.stringify(response.data));
+          for (var i = response.data.length - 1; i >= 0; i--) {
+            console.log(response.data[i].url);
+            response.data[i].score = Math.round((response.data[i].score/response.data[i].totalvotes)*100)
+            $scope.cards.push(response.data[i]);
+          };
+          // this callback will be called asynchronously
+          // when the response is available
+        }, function(response) {
+          console.log("Error")
+          // called asynchronously if an error occurs
+          // or server returns response with an error status.
+    });
+  };
 
   $scope.postsOther = [
     { img: 'img/card.png', hashtag: '#CONCERT' , at: '@CMU', score: '98'},
@@ -38,6 +61,22 @@ angular.module('home', ['ionic'])
     { img: 'img/card.png', hashtag: '#b' , at: '@CMU', score: '99'},
     { img: 'img/card.png', hashtag: '#c' , at: '@CMU', score: '50'}
   ];
+
+    $scope.slider = {};
+    $scope.slider.rangeValue = 500;
+    $scope.buildCards;
+
+  $scope.$watch('slider.rangeValue',function(val,old){
+     $scope.slider.rangeValue = parseInt(val);
+     console.log('range=' + $scope.slider.rangeValue);
+     if ($scope.slider.rangeValue == 1000) {
+        console.log("Up Vote");
+     } 
+     if ($scope.slider.rangeValue == 0) {
+        console.log("Down Vote");
+     } 
+
+  });
 
 
   // Create and load the Modal

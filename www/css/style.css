@@ -29,6 +29,10 @@ h2 {
 	float: right;
 }
 
+#slideBar{
+	width: 100%;
+}
+
 .item-divider {
 	text-align: center;
 }
