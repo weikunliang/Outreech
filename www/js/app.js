@@ -20,6 +20,32 @@ angular.module('home', ['ionic'])
 
 angular.module('home', ['ionic'])
 
+.config(function($compileProvider){
+  $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
+})
+
+angular.module('home', ['ionic'])
+
+.factory('Camera', ['$q', function($q) {
+ 
+  return {
+    getPicture: function(options) {
+      var q = $q.defer();
+      
+      navigator.camera.getPicture(function(result) {
+        // Do any magic you need
+        q.resolve(result);
+      }, function(err) {
+        q.reject(err);
+      }, options);
+      
+      return q.promise;
+    }
+  }
+}])
+
+angular.module('home', ['ionic'])
+
 .controller('FeedCtrl', function($scope, $ionicModal, $ionicLoading, $compile, $http) {
 
   var ipAddress ="127.0.0.1"
@@ -50,6 +76,8 @@ angular.module('home', ['ionic'])
           // or server returns response with an error status.
     });
   };
+
+  $scope.photoModal;
 
   $scope.postsOther = [
     { img: 'img/card.png', hashtag: '#CONCERT' , at: '@CMU', score: '98'},
@@ -104,6 +132,13 @@ angular.module('home', ['ionic'])
 
   $ionicModal.fromTemplateUrl('postMe.html', function(modal) {
     $scope.postMeModal = modal;
+  }, {
+    scope: $scope,
+    animation: 'slide-in-up'
+  });
+
+  $ionicModal.fromTemplateUrl('photo.html', function(modal) {
+    $scope.photoModal = modal;
   }, {
     scope: $scope,
     animation: 'slide-in-up'
@@ -213,6 +248,29 @@ angular.module('home', ['ionic'])
     $scope.filterMe = function() {
       $scope.postAllModal.hide();
       $scope.postMeModal.show();
+    };
+
+    $scope.openCamera = function() {
+      $scope.photoModal.show();
+    };
+
+    $scope.closeCamera = function() {
+      $scope.photoModal.hide();
+    };
+
+
+    $scope.getPhoto = function() {
+      Camera.getPicture().then(function(imageURI) {
+        console.log(imageURI);
+        $scope.lastPhoto = imageURI;
+      }, function(err) {
+        console.err(err);
+      }, {
+        quality: 75,
+        targetWidth: 320,
+        targetHeight: 320,
+        saveToPhotoAlbum: false
+      });
     };
 
 });
